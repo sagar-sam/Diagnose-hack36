@@ -47,39 +47,22 @@ body {font-family: "Lato", sans-serif}
 
 <!-- Page content -->
 <div class="w3-content" style="max-width:2000px;margin-top:46px">
-
-  <!-- TAB1 Section -->
-  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="tab1">
-    <h2 class="w3-wide">TAB1</h2>
-    <p class="w3-opacity"><i>TAB1 Heading</i></p>
-
-    <fieldset><legend>Select Button: </legend>
-
-        <form method=post action="/upload" enctype=multipart/form-data>
-        <input type="file" name="image" accept="image/*">
-        <input type=submit value=Upload>
-        </form>
-
-    </fieldset>
-
-  </div>
-
   <!-- TAB2 Section -->
   <div class="w3-black" id="tab2">
     <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px">
       <h2 class="w3-wide">TAB2</h2>
       <p class="w3-opacity"><i>TAB2 Heading</i></p>
-      <p class="w3-justify">Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. Tab 2 paragraph. </p>
+      <p class="w3-justify">{{ check }} </p><br>
+      <fieldset><legend>Select Button: </legend>
+            <form id=select_form action="http://localhost:5000/upload" method=post enctype="multipart/form-data">
+            <br>
+            <input name="text">
+            <input type=file>
+          <input name=Submit type=submit value="Upload"/>
+        </form>
+      </fieldset>
     </div>
   </div>
-
-  <!-- TAB3 Section -->
-  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="tab3">
-    <h2 class="w3-wide">TAB3</h2>
-    <p class="w3-opacity"><i>TAB3 Heading</i></p>
-      <p class="w3-justify">Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. Tab 3 paragraph. </p>
-  </div>
-  
 <!-- End Page Content -->
 </div>
 
