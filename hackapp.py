@@ -21,26 +21,19 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 dname = os.path.dirname(os.path.abspath(__file__))
 
-'''
-def open_file():
-	global file_name
-	file_name = askopenfilename(filetypes= (("ALL files","*.*"),("Image files","*jpg")))    
-	return file_name
+@app.route('/teeth',methods=['POST','GET'])
+def teeth():
+	return render_template("teeth.html")
 
-@app.route('/openfile',methods = ['POST','GET'])
-def openfile():
-	if request.method == 'POST':
-		return render_template("check.html",check=open_file())
-'''
-
-@app.route('/upload',methods=['POST','GET'])
-def upload():
+@app.route('/teethupload',methods=['POST','GET'])
+def teethupload():
 	if request.method == 'POST':
 		myfile = request.files['image']
-		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'fuckall.jpeg')
+		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'teeth.jpeg')
 		myfile.save(f)
-		subprocess.call("bash predict.sh > acb.txt", shell=True)
-		filename = "acb.txt"
+
+		subprocess.call("bash predict.sh > result.txt", shell=True)
+		filename = "result.txt"
 
 		file = open(filename, "r")
 
