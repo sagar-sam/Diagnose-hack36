@@ -25,9 +25,9 @@ dname = os.path.dirname(os.path.abspath(__file__))
 @app.route('/teeth',methods=['POST','GET'])
 def teeth():
 
-	for f in glob.glob("/Users/omarkhursheed/Downloads/teeth*.png"):
+	for f in glob.glob("/home/danish/Downloads/teeth*.png"):
 		os.remove(f)
-	for f in glob.glob("/Users/omarkhursheed/Hack36/tf_files/teeth*.png") :
+	for f in glob.glob("/home/danish/Hack36/tf_files/teeth*.png") :
 		os.remove(f)
 	return render_template("teeth.html")
 
@@ -36,10 +36,9 @@ def teethuploadcam():
 	if request.method == 'POST':
 		temp=None
 		
-		for f in glob.glob("/Users/omarkhursheed/Downloads/teeth*.png"):
+		for f in glob.glob("/home/danish/Downloads/teeth*.png"):
 			temp = f
 		
-		print(temp)
 		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'teeth.png')
 		shutil.move(temp,os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/')+'teeth.png')
 
