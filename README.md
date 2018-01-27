@@ -4,7 +4,7 @@ Changing lives by making recommendations about problems that you face.
 
 If you're worried that you might need braces, but dread the thought of going to the dentist. Or if your face or your child's, seems to be developing some problem that might need medical attention that isn't immediately available. 
 
-What could be invaluable is that you have an approximate diagnosis of what's wrong, and that's where our product comes in. From within a robust web application, you can take a photograph (or upload one) using the webcam, and thanks to our deep learning algorithms, receive a diagnosis that can help you pinpoint the right healthcare practictioner to go to.
+What could be invaluable is that you have an approximate diagnosis of what's wrong, and that's where our product comes in. From within a robust web application, you can take a photograph (or upload one) using the webcam, and thanks to our deep learning algorithms, receive a diagnosis that can help you pinpoint the right problem you might be facing. This can help you go to the right practitioner and can save you some considerable amount of confusion.
 
 ## What did we set out to achieve? ##
 
