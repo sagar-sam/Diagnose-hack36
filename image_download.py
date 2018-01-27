@@ -9,11 +9,11 @@ import time
 
 # adding path to geckodriver to the OS environment variable
 os.environ["PATH"] += os.pathsep + os.getcwd()
-download_path = "dataset/"
+download_path = "~/tensorflow-for-poets-2/tf_files/faces/cleft_lip"
 
 def main():
-	searchtext = "crooked+teeth"
-	num_requested = 300
+	searchtext = "cleft+lip"
+	num_requested = 150
 	number_of_scrolls = int(num_requested / 400 + 1)
 	# number_of_scrolls * 400 images will be opened in the browser
 
