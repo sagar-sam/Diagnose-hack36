@@ -73,14 +73,14 @@ function myFunction() {
 
     <a href="/" class="w3-bar-item w3-button w3-padding-large">HOME</a>
     <a href="/teeth" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TEETH</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TAB2</a>
+    <a href="/face" class="w3-bar-item w3-button w3-padding-large w3-hide-small">FACE</a>
   </div>
 </div>
 
 <!-- Navbar on small screens -->
 <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
   <a href="/teeth" class="w3-bar-item w3-button w3-padding-large">TEETH</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">TAB2</a>
+  <a href="/face" class="w3-bar-item w3-button w3-padding-large">FACE</a>
 </div>
 
 <!-- Page content -->
@@ -88,10 +88,10 @@ function myFunction() {
 
   <!-- TAB1 Section -->
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="tab1">
-    <h2 class="w3-wide">Teeth File</h2>
-    <p class="w3-opacity"><i>Select Teeth File</i></p>
+    <h2 class="w3-wide">Smile Please!</h2>
+    <p class="w3-opacity"><i>Select Teeth Image</i></p>
 
-    <fieldset><legend>Select Button: </legend>
+    <fieldset><legend align=left class="w3-opacity">Upload photo: </legend>
 
         <form method=post action="/teethupload" enctype=multipart/form-data>
         <input type="file" name="image" id="image" accept="image/*" capture="camera"/>
@@ -101,15 +101,15 @@ function myFunction() {
     </fieldset>
 
     <div id="videostuff">
-    <fieldset><legend>Select Button: </legend>
+    <fieldset><legend align=left class="w3-opacity">Click photo: </legend>
     <form method=post action="/teethupload" enctype=multipart/form-data>
     <video id="v" width="300" height="300"></video><br>
-    <input id="b" type="button" disabled="true" value="Take Picture"></input>
+    <input id="b" type="button" disabled="true" value="Take Picture" class="w3-bar-item w3-button w3-padding-large w3-black"></input>
     <canvas id="c" style="display:none;" width="630" height="500"></canvas>
     </form>
-
+    <br>
     <form method=post action="/teethuploadcam">
-        <input type=submit value="Upload File">
+        <input type=submit value="Upload File" class="w3-bar-item w3-button w3-padding-large w3-black">
     </form>
     </fieldset>
     </div>

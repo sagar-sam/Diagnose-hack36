@@ -46,9 +46,16 @@ def teethuploadcam():
 		filename = "result.txt"
 
 		file = open(filename, "r")
-		x = file.readlines()
+		x = file.readlines() 
 		y = x[3].split(' ')[0]+' '+x[3].split(' ')[1]
-		return render_template("result.html", result=y)
+		
+		imgpath = "tf_files/teeth.png"
+
+		if str(y)=='crooked teeth':
+			return render_template("result.html", imgpath=imgpath, result="Oops! Looks like someone could use a trip to the dentist.")
+		else:
+			return render_template("result.html", imgpath=imgpath, result="Congrats! That's a healty set of teeth. Keep smiling!")
+
 
 @app.route('/teethupload',methods=['POST','GET'])
 def teethupload():
@@ -67,7 +74,67 @@ def teethupload():
 
 		x = file.readlines()
 		y = x[3].split(' ')[0]+' '+x[3].split(' ')[1]
+
+		imgpath = "tf_files/teeth." + ext
+
+		if str(y)=='crooked teeth':
+			return render_template("result.html", imgpath=imgpath, result="Oops! Looks like someone could use a trip to the dentist.")
+		else:
+			return render_template("result.html", imgpath=imgpath, result="Congrats! That's a healty set of teeth. Keep smiling!")
+
+@app.route('/face',methods=['POST','GET'])
+def face():
+
+	for f in glob.glob("/home/danish/Downloads/face*.png"):
+		os.remove(f)
+	for f in glob.glob("/home/danish/Hack36/tf_files/face*.png") :
+		os.remove(f)
+	return render_template("face.html")
+
+@app.route('/faceuploadcam',methods=['POST','GET'])
+def faceuploadcam():
+	if request.method == 'POST':
+		temp=None
+		
+		for f in glob.glob("/home/danish/Downloads/face*.png"):
+			temp = f
+		
+		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'face.png')
+		shutil.move(temp,os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/')+'face.png')
+
+		subprocess.call("bash predict_faces.sh png > result.txt", shell=True)
+		filename = "result.txt"
+
+		file = open(filename, "r")
+		x = file.readlines() 
+		y = x[3].split(' ')[0]+' '+x[3].split(' ')[1]
+		
+		imgpath = "tf_files/face.png"
+
 		return render_template("result.html", result=y)
+
+@app.route('/faceupload',methods=['POST','GET'])
+def faceupload():
+	if request.method == 'POST':
+		myfile = request.files['image']
+
+		z = myfile.filename
+		ext = z.split('.')[-1]
+		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'face.' + ext)
+		myfile.save(f)
+		ext=str(ext)
+		subprocess.call("bash predict_faces.sh "+ext+" > result.txt", shell=True)
+		filename = "result.txt"
+
+		file = open(filename, "r")
+
+		x = file.readlines()
+		y = x[3].split(' ')[0]+' '+x[3].split(' ')[1]
+
+		imgpath = "tf_files/face." + ext
+
+		return render_template("result.html", result=y)
+
 
 @app.route('/')
 def home():

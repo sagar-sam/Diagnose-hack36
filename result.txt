@@ -1,5 +1,7 @@
 
-Evaluation time (1-image): 0.322s
+Evaluation time (1-image): 0.255s
 
-perfect teeth 1.0
-crooked teeth 1.65601e-18
+facial palsy 0.565848
+hairy nevus 0.332209
+perfect human faces 0.10194
+cleft lip 3.06458e-06
