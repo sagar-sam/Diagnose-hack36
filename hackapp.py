@@ -13,6 +13,7 @@ from tkinter.filedialog import askopenfilename
 from shutil import copyfile
 from werkzeug import secure_filename
 import glob, shutil
+from sys import platform
 
 app = Flask(__name__)
 
@@ -24,22 +25,23 @@ dname = os.path.dirname(os.path.abspath(__file__))
 @app.route('/teeth',methods=['POST','GET'])
 def teeth():
 
-	for f in glob.glob("/home/danish/Downloads/teeth*.png"):
+	for f in glob.glob("/Users/omarkhursheed/Downloads/teeth*.png"):
 		os.remove(f)
-
+	for f in glob.glob("/Users/omarkhursheed/Hack36/tf_files/teeth*.png") :
+		os.remove(f)
 	return render_template("teeth.html")
 
 @app.route('/teethuploadcam',methods=['POST','GET'])
 def teethuploadcam():
 	if request.method == 'POST':
 		temp=None
-		for f in glob.glob("/home/danish/Downloads/teeth*.png"):
-			temp=f
-			break
-
+		
+		for f in glob.glob("/Users/omarkhursheed/Downloads/teeth*.png"):
+			temp = f
+		
 		print(temp)
 		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'teeth.png')
-		shutil.copy(temp,os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/'))
+		shutil.move(temp,os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/')+'teeth.png')
 
 		subprocess.call("bash predict.sh png > result.txt", shell=True)
 		filename = "result.txt"
