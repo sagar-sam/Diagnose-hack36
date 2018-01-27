@@ -4,15 +4,38 @@
 <title>Teeth</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link type="text/css" href="{{ url_for('static', filename='css/w3.css') }}" rel="stylesheet"/>
+<link type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
 body {font-family: "Lato", sans-serif}
 .mySlides {display: none}
 </style>
 
+<style>
+    video, img {
+      max-width:100%;
+    }
+</style>
+
+<script>
+  navigator.getUserMedia({video: true}, function(stream) {
+    var video = document.getElementById("v");
+    var canvas = document.getElementById("c");
+    var button = document.getElementById("b");
+    video.srcObject = stream;
+    video.play();
+    button.disabled = false;
+    button.onclick = function() {
+      canvas.getContext("2d").drawImage(video, 10, 10);
+
+      var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+
+      window.location.href=img;
+    };
+  }, function(err) { alert("there was an error " + err)});
+</script>
 
 <body>
 
@@ -55,11 +78,20 @@ body {font-family: "Lato", sans-serif}
     <fieldset><legend>Select Button: </legend>
 
         <form method=post action="/teethupload" enctype=multipart/form-data>
-        <input type="file" name="image" accept="image/*">
+        <input type="file" name="image" id="image" accept="image/*" capture="camera"/>
         <input type=submit value=Upload>
         </form>
 
     </fieldset>
+
+    <fieldset><legend>Select Button: </legend>
+    <form method=post action="/teethupload" enctype=multipart/form-data>
+    <video id="v" width="300" height="300"></video>
+    <input id="b" type="button" disabled="true" value="Take Picture"></input>
+    <canvas id="c" style="display:none;" width="630" height="500"></canvas>
+    </form>
+    </fieldset>
+    
 
   </div>
   
