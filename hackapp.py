@@ -12,7 +12,7 @@ import math
 from tkinter.filedialog import askopenfilename
 from shutil import copyfile
 from werkzeug import secure_filename
-import glob
+import glob, shutil
 
 app = Flask(__name__)
 
@@ -28,6 +28,26 @@ def teeth():
 		os.remove(f)
 
 	return render_template("teeth.html")
+
+@app.route('/teethuploadcam',methods=['POST','GET'])
+def teethuploadcam():
+	if request.method == 'POST':
+		temp=None
+		for f in glob.glob("/home/danish/Downloads/teeth*.png"):
+			temp=f
+			break
+
+		print(temp)
+		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'teeth.png')
+		shutil.copy(temp,os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/'))
+
+		subprocess.call("bash predict.sh png > result.txt", shell=True)
+		filename = "result.txt"
+
+		file = open(filename, "r")
+		x = file.readlines()
+		y = x[3].split(' ')[0]+' '+x[3].split(' ')[1]
+		return render_template("result.html", result=y)
 
 @app.route('/teethupload',methods=['POST','GET'])
 def teethupload():
