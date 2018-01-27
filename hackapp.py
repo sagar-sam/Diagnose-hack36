@@ -20,6 +20,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 dname = os.path.dirname(os.path.abspath(__file__))
 
+'''
 def open_file():
 	global file_name
 	file_name = askopenfilename(filetypes= (("ALL files","*.*"),("Image files","*jpg")))    
@@ -29,12 +30,13 @@ def open_file():
 def openfile():
 	if request.method == 'POST':
 		return render_template("check.html",check=open_file())
+'''
 
 @app.route('/upload',methods=['POST','GET'])
 def upload():
 	if request.method == 'POST':
 		myfile = request.files['image']
-		f = os.path.join(app.config['UPLOAD_FOLDER']+'/temp/', myfile.filename)
+		f = os.path.join(app.config['UPLOAD_FOLDER']+'/temp_teeth/', myfile.filename)
 		myfile.save(f)
 		return render_template("hackapp.html")
 
