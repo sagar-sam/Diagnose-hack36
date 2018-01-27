@@ -39,7 +39,7 @@ def upload():
 		myfile = request.files['image']
 		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'fuckall.jpeg')
 		myfile.save(f)
-		subprocess.call("bash predict.sh", shell=True)
+		subprocess.call("bash predict.sh > acb.txt", shell=True)
 		return render_template("hackapp.html")
 
 @app.route('/')
