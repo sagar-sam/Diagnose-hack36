@@ -12,7 +12,6 @@ import math
 from tkinter.filedialog import askopenfilename
 from shutil import copyfile
 from werkzeug import secure_filename
-import predict
 
 app = Flask(__name__)
 
@@ -39,8 +38,7 @@ def teethupload():
 
 		x = file.readlines()
 		y = x[3].split(' ')[0]+' '+x[3].split(' ')[1]
-		print(y)
-		return render_template("hackapp.html")
+		return render_template("result.html", result=y)
 
 @app.route('/')
 def home():
