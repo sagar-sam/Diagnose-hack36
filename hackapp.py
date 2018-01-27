@@ -30,11 +30,11 @@ def teethupload():
 		myfile = request.files['image']
 
 		z = myfile.filename
-		ext = z.split('.')[1]
+		ext = z.split('.')[-1]
 		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'teeth.' + ext)
 		myfile.save(f)
-
-		subprocess.call("bash predict.sh > result.txt", shell=True)
+		ext=str(ext)
+		subprocess.call("bash predict.sh "+ext+" > result.txt", shell=True)
 		filename = "result.txt"
 
 		file = open(filename, "r")
