@@ -12,6 +12,7 @@ import math
 from tkinter.filedialog import askopenfilename
 from shutil import copyfile
 from werkzeug import secure_filename
+import glob
 
 app = Flask(__name__)
 
@@ -22,6 +23,10 @@ dname = os.path.dirname(os.path.abspath(__file__))
 
 @app.route('/teeth',methods=['POST','GET'])
 def teeth():
+
+	for f in glob.glob("/home/danish/Downloads/teeth*.png"):
+		os.remove(f)
+
 	return render_template("teeth.html")
 
 @app.route('/teethupload',methods=['POST','GET'])

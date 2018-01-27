@@ -19,22 +19,39 @@ body {font-family: "Lato", sans-serif}
     }
 </style>
 
+<script type="text/javascript" src="{{ url_for('static', filename='reimgteeth.js') }}"></script>
+
 <script>
+var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+if (isChrome) {
+
   navigator.getUserMedia({video: true}, function(stream) {
-    var video = document.getElementById("v");
-    var canvas = document.getElementById("c");
-    var button = document.getElementById("b");
-    video.srcObject = stream;
-    video.play();
-    button.disabled = false;
-    button.onclick = function() {
-      canvas.getContext("2d").drawImage(video, 10, 10);
+        var video = document.getElementById("v");
+        var canvas = document.getElementById("c");
+        var button = document.getElementById("b");
+        video.srcObject = stream;
+        video.play();
+        button.disabled = false;
+        button.onclick = function() {
+        canvas.getContext("2d").drawImage(video, 10, 10);
 
-      var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        var img = canvas.toDataURL("image/png");
+        img = img.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
 
-      window.location.href=img;
-    };
-  }, function(err) { alert("there was an error " + err)});
+        ReImg.fromCanvas(document.querySelector('canvas')).downloadPng();
+
+        //window.location.href=img;
+
+        };
+
+        }, function(err) { alert("there was an error " + err)});
+
+}
+else
+{
+  document.getElementById("videostuff").style.display='none';
+}
 </script>
 
 <body>
@@ -84,6 +101,7 @@ body {font-family: "Lato", sans-serif}
 
     </fieldset>
 
+    <div id="videostuff">
     <fieldset><legend>Select Button: </legend>
     <form method=post action="/teethupload" enctype=multipart/form-data>
     <video id="v" width="300" height="300"></video>
@@ -91,7 +109,7 @@ body {font-family: "Lato", sans-serif}
     <canvas id="c" style="display:none;" width="630" height="500"></canvas>
     </form>
     </fieldset>
-    
+    </div>
 
   </div>
   
