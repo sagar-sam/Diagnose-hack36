@@ -28,7 +28,10 @@ def teeth():
 def teethupload():
 	if request.method == 'POST':
 		myfile = request.files['image']
-		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'teeth.jpeg')
+
+		z = myfile.filename
+		ext = z.split('.')[1]
+		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'teeth.' + ext)
 		myfile.save(f)
 
 		subprocess.call("bash predict.sh > result.txt", shell=True)
