@@ -40,6 +40,13 @@ def upload():
 		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'fuckall.jpeg')
 		myfile.save(f)
 		subprocess.call("bash predict.sh > acb.txt", shell=True)
+		filename = "acb.txt"
+
+		file = open(filename, "r")
+
+		x = file.readlines()
+		y = x[3].split(' ')[0]+' '+x[3].split(' ')[1]
+		print(y)
 		return render_template("hackapp.html")
 
 @app.route('/')

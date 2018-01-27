@@ -1,5 +1,5 @@
 
-Evaluation time (1-image): 0.315s
+Evaluation time (1-image): 0.332s
 
-crooked teeth 0.999999
-perfect teeth 1.4386e-06
+perfect teeth 0.99945
+crooked teeth 0.00054971
