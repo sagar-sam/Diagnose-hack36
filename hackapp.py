@@ -12,6 +12,7 @@ import math
 from tkinter.filedialog import askopenfilename
 from shutil import copyfile
 from werkzeug import secure_filename
+import predict
 
 app = Flask(__name__)
 
@@ -36,8 +37,9 @@ def openfile():
 def upload():
 	if request.method == 'POST':
 		myfile = request.files['image']
-		f = os.path.join(app.config['UPLOAD_FOLDER']+'/temp_teeth/', myfile.filename)
+		f = os.path.join(app.config['UPLOAD_FOLDER']+'/tf_files/', 'fuckall.jpeg')
 		myfile.save(f)
+		subprocess.call("bash predict.sh", shell=True)
 		return render_template("hackapp.html")
 
 @app.route('/')
