@@ -1,4 +1,5 @@
-# Diagnose (Top 12 at Hack36 2018 at MNNIT Allahabad)
+# Diagnose 
+## Top 12 at Hack36 2018 at MNNIT Allahabad ##
 
 Changing lives by making recommendations about problems that you face.
 
